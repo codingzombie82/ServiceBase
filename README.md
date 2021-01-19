@@ -61,7 +61,18 @@ ITokenBuilder.cs 파일 추가
 - MVC와 Blazor를 동시 사용하기 위한 endpoint의 라우터 설정 (startup.cs)
 - app.UseAuthorization(); 인증처리를 위한 함수 추가 (startup.cs)
 
-[14] 테스트 확인
+[15] 테스트 확인
+API 확인
+ex)Post https://localhost:44344/api/authentication/login (토큰 정상적으로 가져오는 지 확인 성공하면 200 OK, 실패하면 400 Bad Request)
+성공한 키를 가지고 Verify 체크
+ex)Get https://localhost:44344/api/authentication/verify (헤더에 Authorization / Bearer #위에서 얻어온 토큰 추가#)
+: 성공시 204 No Content 실패시 401Unauthorized
+
+
+
+
+
+
 
 
 
