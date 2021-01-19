@@ -31,19 +31,18 @@ namespace ServiceBase
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services
-             .AddAuthentication(options =>
+            services.AddAuthentication(options =>
              {
                  options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                  options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-             })
-              .AddJwtBearer(cfg =>
-              {
+             }).AddJwtBearer(cfg =>
+             {
                   cfg.RequireHttpsMetadata = true;
                   cfg.SaveToken = true;
                   cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
@@ -56,7 +55,10 @@ namespace ServiceBase
                       ClockSkew = TimeSpan.Zero,
                       ValidateIssuerSigningKey = true
                   };
-              });
+             });
+
+
+
 
             services.AddScoped<ITokenBuilder, TokenBuilder>();
 
@@ -85,7 +87,9 @@ namespace ServiceBase
             app.UseStaticFiles();
 
             app.UseRouting();
-            
+
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

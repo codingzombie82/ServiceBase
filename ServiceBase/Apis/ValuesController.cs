@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace ServiceBase.Apis
     public class ValuesController : ControllerBase
     {
         // GET: api/<ValuesController>
+        [Authorize]
         [HttpGet]
         public IEnumerable<string> Get()
         {
