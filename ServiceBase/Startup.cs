@@ -38,28 +38,7 @@ namespace ServiceBase
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            //JWT 인증 사용
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(cfg =>
-            {
-                 cfg.RequireHttpsMetadata = true;
-                 cfg.SaveToken = true;
-                 cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
-                 {
-                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("placeholder-key-that-is-long-enough-for-sha256")),
-                      ValidateAudience = false, //토큰 유효성 검사 중에 대상의 유효성을 검사할지 여부
-                      ValidateIssuer = false, //토큰 유효성 검사 중에 발급자가 유효성을 검사할지 여부
-                      ValidateLifetime = false, //토큰 유효성 검사 중에 수명의 유효성을 검사할지 여부
-                      RequireExpirationTime = false, //토큰에 만료시간 속성이 필요한지 적용
-                      ClockSkew = TimeSpan.Zero, //시간의 유효성을 검사 할 때 적용 
-                      ValidateIssuerSigningKey = true //securityToken 에 서명 한 SecurityKey의 유효성 검사 가 호출 되는지 여부
-                 };
-            });
-            services.AddScoped<ITokenBuilder, TokenBuilder>(); // 토큰 생성
-            //JWT 인증 사용
+            JWTAuthentication(services); //jWT 인증 등록 함수
 
 
             services.AddControllers(); // MVC를 사용하기 위해
@@ -74,7 +53,36 @@ namespace ServiceBase
            
             //[DI] 의존성 주입(Dependency Injection)
             DependencyInjectionContainer(services);
+
+            services.AddSwaggerGen();//Swagger 추가
         }
+
+        //jWT 인증 등록 함수
+        private void JWTAuthentication(IServiceCollection services) {
+            //JWT 인증 사용
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(cfg =>
+            {
+                cfg.RequireHttpsMetadata = true;
+                cfg.SaveToken = true;
+                cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                {
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("placeholder-key-that-is-long-enough-for-sha256")),
+                    ValidateAudience = false, //토큰 유효성 검사 중에 대상의 유효성을 검사할지 여부
+                    ValidateIssuer = false, //토큰 유효성 검사 중에 발급자가 유효성을 검사할지 여부
+                    ValidateLifetime = false, //토큰 유효성 검사 중에 수명의 유효성을 검사할지 여부
+                    RequireExpirationTime = false, //토큰에 만료시간 속성이 필요한지 적용
+                    ClockSkew = TimeSpan.Zero, //시간의 유효성을 검사 할 때 적용 
+                    ValidateIssuerSigningKey = true //securityToken 에 서명 한 SecurityKey의 유효성 검사 가 호출 되는지 여부
+                };
+            });
+            services.AddScoped<ITokenBuilder, TokenBuilder>(); // 토큰 생성
+            //JWT 인증 사용
+        }
+
 
         /// <summary>
         /// 의존성 주입 관련 코드만 따로 모아서 관리
@@ -110,6 +118,16 @@ namespace ServiceBase
 
             app.UseAuthentication(); // 토큰 인증 후 Api 사용 인증에 대한 처리 [Authorize]
             app.UseAuthorization(); //인증 
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            //swagger 등록  
+            app.UseSwagger(); //swagger 등록                             
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+            //swagger 등록  
+
 
             app.UseEndpoints(endpoints =>
             {
