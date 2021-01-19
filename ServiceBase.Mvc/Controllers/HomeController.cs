@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ServiceBase.Models;
+using ServiceBase.Mvc.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ServiceBase.Controllers
+namespace ServiceBase.Mvc.Controllers
 {
     public class HomeController : Controller
     {
