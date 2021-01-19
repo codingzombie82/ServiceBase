@@ -53,7 +53,7 @@ ITokenBuilder.cs 파일 추가
 - VerifyToken api 적용 : 토큰 유효성 확인하는 함수
 
 
-[14] 최초 Blazor 프로젝트로 생성을 했기 때문에 api가 정상적으로 호출되는 지 확인
+[14] 최초 Blazor 프로젝트로 생성을 했기 때문에 MVC를 통한 api가 정상적으로 호출되는 지 확인 (Blazor + MVC 혼용사용)
 - Controllers 폴더 생성
 - HomeController 생성
 - Views 폴더 생성
