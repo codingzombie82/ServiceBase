@@ -57,8 +57,9 @@ ITokenBuilder.cs 파일 추가
 - Controllers 폴더 생성
 - HomeController 생성
 - Views 폴더 생성
-- Views 폴더 아래 -> Home 폴더 생성
-
+- Views 폴더 아래 -> Home 폴더 생성 -> HomeController에 index.cshtml 보기 파일 생성
+- MVC와 Blazor를 동시 사용하기 위한 endpoint의 라우터 설정 (startup.cs)
+- app.UseAuthorization(); 인증처리를 위한 함수 추가 (startup.cs)
 
 [14] 테스트 확인
 
