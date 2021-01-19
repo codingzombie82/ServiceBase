@@ -4,42 +4,59 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ServiceBase</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/templates/landing/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/templates/landing/css/modern-business.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ServiceBase</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            &copy; 2021 - ServiceBase - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <a class="navbar-brand" href="/Home">Start Bootstrap</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/About">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/DashBoard">Board</a>
+                    </li>
+                    @*<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Portfolio
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                                <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
+                                <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
+                                <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
+                                <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
+                                <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
+                            </div>
+                        </li>*@
+                    @*<partial name="_LoginPartial" />*@
+                </ul>
+            </div>
         </div>
+    </nav>
+
+    @RenderBody()
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website @DateTime.Now.Year</p>
+        </div>
+        <!-- /.container -->
     </footer>
+
+    <!-- Bootstrap core JavaScript -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
