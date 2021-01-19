@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using ServiceBase.Controllers;
 using ServiceBase.Data;
+using ServiceBase.Models.Articles;
 using ServiceBase.Services;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,9 @@ namespace ServiceBase
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            //게시판 전용 종속성 주입 코드
+            AddDependencyInjectionContainerForArticles(services);
+
             JWTAuthentication(services); //jWT 인증 등록 함수
 
 
@@ -62,6 +66,20 @@ namespace ServiceBase
             AddCors(services);
             // CORS 사용 허용
         }
+
+        /// <summary>
+        /// 게시판(Articles) 관련 의존성(종속성) 주입 관련 코드만 따로 모아서 관리
+        /// </summary>
+        private void AddDependencyInjectionContainerForArticles(IServiceCollection services)
+        {
+            // ArticleAppDbContext.cs Inject: New DbContext Add
+            services.AddEntityFrameworkSqlServer().AddDbContext<ArticleAppDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            // IArticleRepository.cs Inject: DI Container에 서비스(리포지토리) 등록
+            services.AddTransient<IArticleRepository, ArticleRepository>();
+        }
+
 
         private void AddCors(IServiceCollection services) {
 
