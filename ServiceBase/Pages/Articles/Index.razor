@@ -1,10 +1,9 @@
 ﻿@page "/Articles"
 @page "/Articles/Index"
 
-@inject IArticleRepository ArticleRepository
+<div class="container">
 
-<br/>
-<h3>게시판 관리 페이지</h3>
+<h3>Index</h3>
 
 <div class="row">
     <div class="col-md-12">
@@ -26,7 +25,8 @@
     <div class="col-md-12">
         @if (articles == null)
         {
-            <p><em>Loading...</em></p> }
+            <p><em>Loading...</em></p>
+        }
         else
         {
             <table class="table table-bordered table-hover">
@@ -57,23 +57,11 @@
                         </tr>
                     }
                 </tbody>
-            </table>}
+            </table>
+        }
     </div>
     <div class="col-md-12">
-@*<DulPagerComponent Model="pager" PageIndexChanged="PageIndexChanged"></DulPagerComponent>*@
+        <DulPagerComponent Model="pager" PageIndexChanged="PageIndexChanged"></DulPagerComponent>
+    </div>
 </div>
 </div>
-
-@code {
-
-    private List<Article> articles;
-
-    protected override async Task OnInitializedAsync()
-    {
-        articles = await ArticleRepository.GetArticlesAsync();
-    }
-
-    private void btnTitle_Click(int id) { 
-    
-    }
-}
