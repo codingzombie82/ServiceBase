@@ -39,7 +39,31 @@ Microsoft.EntityFrameworkCore.Tools
 -> 마이그래이션 폴더 생성되고 Migration을 상속 받은 Users 생성됨
 -> Users 테이블을 생성하기 위한 Update-Database 적용 -> 데이터 베이스에 Users 테이블 확인
 
-[12]
+[12] Services 폴더 생성
+TokenBuilder.cs
+ITokenBuilder.cs 파일 추가
+
+[12] ConfigureServices에 TokenBuilder, ITokenBuilder 주입 및 인증을 구성
+
+[13] endpoints 생성
+- apis 폴더 생성 
+- AuthenticationController.cs 파일 추가 Api 용으로 만듬
+- 생성자에  ApplicationDbContext, ITokenBuilder 읽기 전용으로 추가
+- login api 적용 ( 테스트용으로 DB에 있는 패스워드 정보는 고정으로 하나 차후 암호화해서 적용)
+- VerifyToken api 적용 : 토큰 유효성 확인하는 함수
+
+[14] 테스트 확인
+
+
+
+
+
+
+
+
+
+
+
 
 
 
