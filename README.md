@@ -52,6 +52,14 @@ ITokenBuilder.cs 파일 추가
 - login api 적용 ( 테스트용으로 DB에 있는 패스워드 정보는 고정으로 하나 차후 암호화해서 적용)
 - VerifyToken api 적용 : 토큰 유효성 확인하는 함수
 
+
+[14] 최초 Blazor 프로젝트로 생성을 했기 때문에 api가 정상적으로 호출되는 지 확인
+- Controllers 폴더 생성
+- HomeController 생성
+- Views 폴더 생성
+- Views 폴더 아래 -> Home 폴더 생성
+
+
 [14] 테스트 확인
 
 
