@@ -1,0 +1,7 @@
+﻿참고 자료
+
+            //https://github.com/dotnet-labs/JwtAuthDemo/tree/master/webapi
+            //https://docs.microsoft.com/ko-kr/dotnet/architecture/microservices/secure-net-microservices-web-applications/
+       //https://icodebroker.tistory.com/8976
+        //https://www.c-sharpcorner.com/article/authentication-and-authorization-in-asp-net-core-web-api-with-json-web-tokens/
+ 

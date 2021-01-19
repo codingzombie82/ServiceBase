@@ -23,6 +23,7 @@ namespace ServiceBase.Apis
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
+        [Authorize]
         public string Get(int id)
         {
             return "value";
@@ -30,18 +31,21 @@ namespace ServiceBase.Apis
 
         // POST api/<ValuesController>
         [HttpPost]
+        [Authorize]
         public void Post([FromBody] string value)
         {
         }
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
+        [Authorize]
         public void Put(int id, [FromBody] string value)
         {
         }
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public void Delete(int id)
         {
         }
