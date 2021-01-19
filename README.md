@@ -75,6 +75,7 @@ ex)Get https://localhost:44344/api/authentication/verify (헤더에 Authorizatio
 - 테스트 Headers에 key(Authorization) Value(인증된 토큰 추가) Bearer #토큰#
 - Api 호출 테스트 정상적인 방식이면 200 ok , 실패시 401 Unauthorized 호출됨
 - 아직 토큰에 대한 Expire 적용 전 단계
+- Role 에 따른 함수 호출 차이 적용 전 단계
 
 
 
