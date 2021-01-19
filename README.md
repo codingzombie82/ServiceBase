@@ -9,6 +9,7 @@ Blazor, MVC, Web Api를 사용한 프로젝트
 [3] 닷넷  클래스 라이브러리 프로젝트 생성
 
 [4] jwt 인증 authentication 적용 (ASP.NET Core의 단순 권한 부여)
+https://docs.microsoft.com/ko-kr/aspnet/core/security/authorization/simple?view=aspnetcore-3.1
 
 패키지 설치
 
