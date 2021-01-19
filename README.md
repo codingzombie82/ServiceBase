@@ -68,6 +68,20 @@ ex)Post https://localhost:44344/api/authentication/login (토큰 정상적으로
 ex)Get https://localhost:44344/api/authentication/verify (헤더에 Authorization / Bearer #위에서 얻어온 토큰 추가#)
 : 성공시 204 No Content 실패시 401Unauthorized
 
+[16] 토큰 인증된 사용자만 API 사용처리
+- app.UseAuthentication(); 토큰 인증처리 체계 등록을 위한 함수 추가 (startup.cs)
+- 테스트를 위해 기본 API 추가  ValuesController (Api)
+- Api GET [Authorize] 어노테이션 추가
+- 테스트 Headers에 key(Authorization) Value(인증된 토큰 추가) Bearer #토큰#
+- Api 호출 테스트 정상적인 방식이면 200 ok , 실패시 401 Unauthorized 호출됨
+- 아직 토큰에 대한 Expire 적용 전 단계
+
+
+
+
+
+
+
 
 
 
