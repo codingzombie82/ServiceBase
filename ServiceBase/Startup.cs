@@ -48,14 +48,49 @@ namespace ServiceBase
             services.AddServerSideBlazor();
             //블레이저 사용
 
-            services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<WeatherForecastService>(); //샘플 파일
 
            
             //[DI] 의존성 주입(Dependency Injection)
             DependencyInjectionContainer(services);
 
+            //swagger 등록  
             services.AddSwaggerGen();//Swagger 추가
+            //swagger 등록  
+
+            // CORS 사용 허용
+            AddCors(services);
+            // CORS 사용 허용
         }
+
+        private void AddCors(IServiceCollection services) {
+
+            #region CORS
+            //[CORS][1] CORS 사용 등록
+            //[CORS][1][1] 기본: 모두 허용
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowAnyOrigin",
+            //        builder => builder
+            //        .AllowAnyOrigin()
+            //        .AllowAnyMethod()
+            //        .AllowAnyHeader());
+            //});
+            ////[CORS][1][2] 참고: 모두 허용
+            //services.AddCors(o => o.AddPolicy("AllowAllPolicy", options =>
+            //{
+            //    options.AllowAnyOrigin()
+            //            .AllowAnyMethod()
+            //            .AllowAnyHeader();
+            //}));
+            //[CORS][1][3] 참고: 특정 도메인만 허용
+            //services.AddCors(o => o.AddPolicy("AllowSpecific", options =>
+            //        options.WithOrigins("https://localhost:44371")
+            //               .WithMethods("GET", "POST", "PUT", "PATCH", "DELETE")
+            //               .WithHeaders("accept", "content-type", "origin", "X-TotalRecordCount")));
+            #endregion
+        }
+
 
         //jWT 인증 등록 함수
         private void JWTAuthentication(IServiceCollection services) {
@@ -112,7 +147,7 @@ namespace ServiceBase
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(); //wwwroot 사용하기 위함
 
             app.UseRouting();
 
@@ -127,6 +162,11 @@ namespace ServiceBase
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
             //swagger 등록  
+
+            // CORS 사용 허용
+            //            app.UseCors("AllowAnyOrigin");
+            app.UseCors();
+            // CORS 사용 허용
 
 
             app.UseEndpoints(endpoints =>
