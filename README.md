@@ -78,6 +78,9 @@ ex)Get https://localhost:44344/api/authentication/verify (헤더에 Authorizatio
 - 아직 토큰에 대한 Expire 적용 전 단계
 - Role 에 따른 함수 호출 차이 적용 전 단계
 
+[17] Swashbuckle 적용
+참고 : https://docs.microsoft.com/ko-kr/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-3.1&tabs=visual-studio
+
 
 
 
