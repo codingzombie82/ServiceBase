@@ -1,0 +1,31 @@
+﻿@{ 
+    Layout = null;
+
+}
+
+<h1>
+    Web Api 테스트
+</h1>
+<span id="lblkor"></span>
+<span id="lblEng"></span>
+<span id="lblTotal"></span>
+<hr />
+<ul id="list">
+</ul>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+
+    $(function () {
+        var ApiUrl = "/api/ranking";
+        $.getJSON(ApiUrl, function (data) {
+            $("#lblkor").text(data.subject.kor);
+            $("#lblEng").text(data.subject.eng);
+            $("#lblTotal").text(data.subject.total);
+            $.each(data.students, function (key, val) {
+
+                $("<li />", { html: key +": "+ val.id + ", " + val.name + ", " + val.score }).appendTo('#list');
+
+            });
+        });
+    });
+</script>
