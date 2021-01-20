@@ -31,16 +31,18 @@
             </div>
         </div>
         </div>
-        @code { [Parameter]
-                    public int Id { get; set; }
+        @code { 
+            [Parameter]
+            public int Id { get; set; }
 
-                    public Article Model { get; set; } = new Article();
+            public Article Model { get; set; } = new Article();
 
-                    private string content = "";
+            private string content = "";
 
-                    protected override async Task OnInitializedAsync()
-                    {
-                        Model = await ArticleRepository.GetArticleByIdAsync(Id);
-                        //lblContext = Model.Content.Replace("\n", "<br />"); // 내용
-                        content = Dul.HtmlUtility.EncodeWithTabAndSpace(Model.Content); // \n, \t
-                    } }
+            protected override async Task OnInitializedAsync()
+            {
+                Model = await ArticleRepository.GetArticleByIdAsync(Id);
+                //lblContext = Model.Content.Replace("\n", "<br />"); // 내용
+                content = Dul.HtmlUtility.EncodeWithTabAndSpace(Model.Content); // \n, \t
+            } 
+        }

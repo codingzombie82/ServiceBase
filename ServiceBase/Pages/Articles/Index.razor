@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-12">
         <a href="/Articles/Create" class="btn btn-primary">Create</a>
-        @*<AuthorizeView>
+        <AuthorizeView>
             <Authorized>
             </Authorized>
             <NotAuthorized>
@@ -17,7 +17,7 @@
         </AuthorizeView>
         <AuthorizeView Roles="Administrators, Managers">
             <a href="/Articles/Manage" class="btn btn-primary">Manage</a>
-        </AuthorizeView>*@
+        </AuthorizeView>
     </div>
 </div>
 
